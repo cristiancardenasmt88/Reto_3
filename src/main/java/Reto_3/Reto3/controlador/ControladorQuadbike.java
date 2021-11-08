@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Reto_3.Reto3;
+package Reto_3.Reto3.controlador;
 
+import Reto_3.Reto3.servicios.ServiciosQuadbike;
+import Reto_3.Reto3.modelo.Quadbike;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,40 +24,42 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author drago
+ * Clase ControladorQuadbike metodos GET, POST, PUT, DELETE
+ * @since 08-11-2021
+ * @version 1.0
+ * @author Cristian Camilo Cárdenas López
  */
 @RestController
-@RequestMapping("/api/Message")
+@RequestMapping("/api/Quadbike")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-
-public class ControladorMensaje {
+public class ControladorQuadbike {
     @Autowired
-    private ServiciosMensaje servico;
+    private ServiciosQuadbike servicio;
     @GetMapping("/all")
-    public List<Mensaje> getMessages(){
-        return servico.getAll();
+    public List<Quadbike> getQuadbikes(){
+        return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Mensaje> getMessage(@PathVariable("id") int messageId) {
-        return servico.getMessage(messageId);
+    public Optional<Quadbike> getQuadbike(@PathVariable("id") int quadbikeId) {
+        return servicio.getQuadbike(quadbikeId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mensaje save(@RequestBody Mensaje message) {
-        return servico.save(message);
+    public Quadbike save(@RequestBody Quadbike quadbike) {
+        return servicio.save(quadbike);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mensaje update(@RequestBody Mensaje message) {
-        return servico.update(message);
+    public Quadbike update(@RequestBody Quadbike quadbike) {
+        return servicio.update(quadbike);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int messageId) {
-        return servico.deleteMessage(messageId);
-    }
+    public boolean delete(@PathVariable("id") int quadbikeId) {
+        return servicio.deleteQuadbike(quadbikeId);
+    } 
+    
 }

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Reto_3.Reto3;
+package Reto_3.Reto3.controlador;
 
+import Reto_3.Reto3.servicios.ServiciosReservation;
+import Reto_3.Reto3.modelo.Reservation;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,40 +24,40 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author drago
+ * Clase ControladorReservation metodos GET, POST, PUT, DELETE
+ * @since 08-11-2021
+ * @version 1.0
+ * @author Cristian Camilo Cárdenas López
  */
 @RestController
-@RequestMapping("/api/Quadbike")
+@RequestMapping("/api/Reservation")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class ControladorQuadbike {
+
+public class ControladorReservation {
     @Autowired
-    private ServiciosQuadbike servicio;
+    private ServiciosReservation servicio;
     @GetMapping("/all")
-    public List<Quadbike> getQuadbikes(){
+    public List<Reservation> getReservations(){
         return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Quadbike> getQuadbike(@PathVariable("id") int quadbikeId) {
-        return servicio.getQuadbike(quadbikeId);
+    public Optional<Reservation> getReservation(@PathVariable("id") int reservationId) {
+        return servicio.getReservation(reservationId);
     }
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Quadbike save(@RequestBody Quadbike quadbike) {
-        return servicio.save(quadbike);
+    public Reservation save(@RequestBody Reservation reservation) {
+        return servicio.save(reservation);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Quadbike update(@RequestBody Quadbike quadbike) {
-        return servicio.update(quadbike);
+    public Reservation update(@RequestBody Reservation reservation) {
+        return servicio.update(reservation);
     }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int quadbikeId) {
-        return servicio.deleteQuadbike(quadbikeId);
-    } 
-    
+    public boolean delete(@PathVariable("id") int reservationId) {
+        return servicio.deleteReservation(reservationId);
+    }
 }

@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Reto_3.Reto3;
+
+package Reto_3.Reto3.servicios;
 
 
+import Reto_3.Reto3.repositorio.RepositorioClient;
+import Reto_3.Reto3.modelo.Client;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author drago
+ * Clase ServiciosCategory
+ * @since 08-11-2021
+ * @version 1.0
+ * @author Cristian Camilo Cárdenas López
  */
 @Service
 public class ServiciosClient {

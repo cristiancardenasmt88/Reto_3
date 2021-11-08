@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Reto_3.Reto3;
+package Reto_3.Reto3.controlador;
 
+import Reto_3.Reto3.servicios.ServiciosClient;
+import Reto_3.Reto3.modelo.Client;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,38 +24,43 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author drago
+ * Clase ControladorClient metodos GET, POST, PUT, DELETE
+ * @since 08-11-2021
+ * @version 1.0
+ * @author Cristian Camilo Cárdenas López
  */
 @RestController
-@RequestMapping("/api/Reservation")
+@RequestMapping("/api/Client")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 
-public class ControladorReservation {
+public class ControladorClient {
     @Autowired
-    private ServiciosReservation servicio;
+    private ServiciosClient servicio;
+  
     @GetMapping("/all")
-    public List<Reservation> getReservations(){
+    public List<Client> getClients(){
         return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int reservationId) {
-        return servicio.getReservation(reservationId);
+    public Optional<Client> getClient(@PathVariable("id") int clientId) {
+        return servicio.getClient(clientId);
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation reservation) {
-        return servicio.save(reservation);
+    public Client save(@RequestBody Client client) {
+        return servicio.save(client);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update(@RequestBody Reservation reservation) {
-        return servicio.update(reservation);
+    public Client update(@RequestBody Client client) {
+        return servicio.update(client);
     }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int reservationId) {
-        return servicio.deleteReservation(reservationId);
+    public boolean delete(@PathVariable("id") int clientId) {
+        return servicio.deleteClient(clientId);
     }
 }
